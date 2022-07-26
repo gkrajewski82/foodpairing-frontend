@@ -19,6 +19,19 @@ public class BackendClient {
 
     private final RestTemplate restTemplate;
 
+    public List<SpoonacularDish> getDishListFromSpoonacular(String nameFragment) {
+        URI url = UriComponentsBuilder
+                .fromHttpUrl("http://localhost:8080/foodpairing/v1/spoonacular/dishes/" + nameFragment)
+                .build()
+                .encode()
+                .toUri();
+
+        SpoonacularDish[] response = restTemplate.getForObject(url, SpoonacularDish[].class);
+        return Optional.ofNullable(response)
+                .map(Arrays::asList)
+                .orElse(Collections.emptyList());
+    }
+
     public List<Composition> getCompositionList() {
         URI url = UriComponentsBuilder
                 .fromHttpUrl("http://localhost:8080/foodpairing/v1/compositions")
@@ -32,16 +45,4 @@ public class BackendClient {
                     .orElse(Collections.emptyList());
     }
 
-    public List<SpoonacularDish> getDishListFromSpoonacular() {
-        URI url = UriComponentsBuilder
-                .fromHttpUrl("http://localhost:8080/foodpairing/v1/spoonacular/dishes/banana")
-                .build()
-                .encode()
-                .toUri();
-
-        SpoonacularDish[] response = restTemplate.getForObject(url, SpoonacularDish[].class);
-        return Optional.ofNullable(response)
-                .map(Arrays::asList)
-                .orElse(Collections.emptyList());
-    }
 }

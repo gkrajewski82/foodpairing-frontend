@@ -15,12 +15,12 @@ public class SpoonacularDish {
     @JsonProperty("title")
     private String name;
 
+    @JsonProperty("sourceUrl")
+    private String recipeUrl;
+
     @JsonProperty("readyInMinutes")
     private int readyInMinutes;
 
     @JsonProperty("servings")
     private int servings;
-
-    @JsonProperty("sourceUrl")
-    private String recipeUrl;
 }

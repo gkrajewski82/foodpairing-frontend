@@ -6,6 +6,7 @@ import com.kodilla.foodpairingfrontend.domain.spoonacular.SpoonacularDish;
 import com.kodilla.foodpairingfrontend.domain.spoonacular.SpoonacularDishService;
 import com.vaadin.flow.component.grid.Grid;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
+import com.vaadin.flow.component.textfield.TextField;
 import com.vaadin.flow.router.Route;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -22,20 +23,32 @@ public class MainView extends VerticalLayout {
 
     private Grid<SpoonacularDish> gridSpoonacularDish = new Grid<>(SpoonacularDish.class);
     private Grid<Composition> gridComposition = new Grid<>(Composition.class);
+    private TextField findByNameFragment = new TextField();
 
     public MainView() {
     }
 
+    public void refreshSpoonacularData() {
+        gridSpoonacularDish.setItems(spoonacularDishService.getDishes(findByNameFragment.getValue()));
+    }
+
     public void refresh() {
-        gridSpoonacularDish.setItems(spoonacularDishService.getDishes());
         gridComposition.setItems(compositionService.getCompositions());
+    }
+
+    public void createSearchField() {
+        findByNameFragment.setPlaceholder("Search dish by name...");
+        findByNameFragment.setClearButtonVisible(true);
+        findByNameFragment.addValueChangeListener(e -> refreshSpoonacularData());
     }
 
     @PostConstruct
     public void init() {
-        gridSpoonacularDish.setColumns("name", "readyInMinutes", "servings", "recipeUrl");
+        createSearchField();
+        gridSpoonacularDish.setColumns("name", "recipeUrl", "readyInMinutes", "servings");
+        add(findByNameFragment, gridSpoonacularDish);
+
         gridComposition.setColumns("id", "dishId", "drinkId", "created");
-        add(gridSpoonacularDish);
         add(gridComposition);
         setSizeFull();
         refresh();
