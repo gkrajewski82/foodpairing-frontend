@@ -1,6 +1,6 @@
 package com.kodilla.foodpairingfrontend.domain.dish;
 
-import com.kodilla.foodpairingfrontend.MainView;
+import com.kodilla.foodpairingfrontend.view.DishView;
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.button.ButtonVariant;
 import com.vaadin.flow.component.formlayout.FormLayout;
@@ -10,7 +10,7 @@ import com.vaadin.flow.data.binder.Binder;
 
 public class DishForm extends FormLayout {
 
-    private MainView mainView;
+    private DishView dishView;
     private DishService dishService = DishService.getInstance();
 
     private TextField externalSystemId = new TextField("External system id");
@@ -21,10 +21,10 @@ public class DishForm extends FormLayout {
 
     private Button save = new Button("Save");
     private Button delete = new Button("Delete");
-    private Binder<Dish> binder = new Binder<Dish>(Dish.class);
+    private Binder<Dish> binder = new Binder<>(Dish.class);
 
-    public DishForm(MainView mainView) {
-        this.mainView = mainView;
+    public DishForm(DishView dishView) {
+        this.dishView = dishView;
         HorizontalLayout buttons = new HorizontalLayout(save, delete);
         save.addThemeVariants(ButtonVariant.LUMO_PRIMARY);
         add(externalSystemId, name, readyInMinutes, servings, recipeUrl, buttons);
@@ -37,14 +37,14 @@ public class DishForm extends FormLayout {
 /*    private void save() {
         Dish dish = binder.getBean();
         //dishService.save(dish);
-        mainView.refreshDish();
+        dishView.refreshDish();
         setDish(null);
     }*/
 
 /*    private void delete() {
         Dish dish = binder.getBean();
         //dishService.delete(dish);
-        mainView.refreshDish();
+        dishView.refreshDish();
         setDish(null);
     }*/
 

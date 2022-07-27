@@ -2,7 +2,7 @@ package com.kodilla.foodpairingfrontend.client;
 
 import com.kodilla.foodpairingfrontend.domain.composition.Composition;
 import com.kodilla.foodpairingfrontend.domain.dish.Dish;
-import com.kodilla.foodpairingfrontend.domain.spoonacular.SpoonacularDish;
+import com.kodilla.foodpairingfrontend.domain.dish.SpoonacularDish;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.util.UriComponentsBuilder;
 

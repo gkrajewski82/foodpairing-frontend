@@ -1,4 +1,4 @@
-package com.kodilla.foodpairingfrontend.domain.spoonacular;
+package com.kodilla.foodpairingfrontend.domain.dish;
 
 import com.kodilla.foodpairingfrontend.client.BackendClient;
 import lombok.RequiredArgsConstructor;
