@@ -1,21 +1,25 @@
 package com.kodilla.foodpairingfrontend.domain.dish;
 
-
 import com.kodilla.foodpairingfrontend.client.BackendClient;
-import com.kodilla.foodpairingfrontend.domain.spoonacular.SpoonacularDish;
 import lombok.RequiredArgsConstructor;
-import org.springframework.stereotype.Service;
 import org.springframework.web.client.HttpClientErrorException;
 
 import java.util.Collections;
 import java.util.List;
 
-@Service
 @RequiredArgsConstructor
 public class DishService {
 
-    private final BackendClient backendClient;
+    private static DishService dishService;
+    private final BackendClient backendClient = new BackendClient();
     private List<Dish> dishList;
+
+    public static DishService getInstance() {
+        if (dishService == null) {
+            dishService = new DishService();
+        }
+        return dishService;
+    }
 
     public List<Dish> getDishes() {
         try {

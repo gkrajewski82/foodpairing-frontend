@@ -3,8 +3,6 @@ package com.kodilla.foodpairingfrontend.client;
 import com.kodilla.foodpairingfrontend.domain.composition.Composition;
 import com.kodilla.foodpairingfrontend.domain.dish.Dish;
 import com.kodilla.foodpairingfrontend.domain.spoonacular.SpoonacularDish;
-import lombok.RequiredArgsConstructor;
-import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.util.UriComponentsBuilder;
 
@@ -14,11 +12,10 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 
-@Component
-@RequiredArgsConstructor
+
 public class BackendClient {
 
-    private final RestTemplate restTemplate;
+    private final RestTemplate restTemplate = new RestTemplate();
 
     public List<SpoonacularDish> getDishListFromSpoonacular(String nameFragment) {
         URI url = UriComponentsBuilder
