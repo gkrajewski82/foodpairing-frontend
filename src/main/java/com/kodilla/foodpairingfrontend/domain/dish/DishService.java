@@ -1,6 +1,8 @@
-package com.kodilla.foodpairingfrontend.domain.spoonacular;
+package com.kodilla.foodpairingfrontend.domain.dish;
+
 
 import com.kodilla.foodpairingfrontend.client.BackendClient;
+import com.kodilla.foodpairingfrontend.domain.spoonacular.SpoonacularDish;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.HttpClientErrorException;
@@ -10,17 +12,25 @@ import java.util.List;
 
 @Service
 @RequiredArgsConstructor
-public class SpoonacularDishService {
+public class DishService {
 
     private final BackendClient backendClient;
-    private List<SpoonacularDish> spoonacularDishList;
+    private List<Dish> dishList;
 
-    public List<SpoonacularDish> getSpoonacularDishes(String nameFragment) {
+    public List<Dish> getDishes() {
         try {
-            spoonacularDishList = backendClient.getDishListFromSpoonacular(nameFragment);
-            return spoonacularDishList;
+            dishList = backendClient.getDishList();
+            return dishList;
         } catch (HttpClientErrorException e) {
             return Collections.EMPTY_LIST;
         }
     }
+
+/*    public void save(Dish dish) {
+        this.books.add(dish);
+    }
+
+    public void delete(Dish dish) {
+        this.books.remove(dish);
+    }*/
 }

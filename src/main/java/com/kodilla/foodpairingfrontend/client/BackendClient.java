@@ -1,6 +1,7 @@
 package com.kodilla.foodpairingfrontend.client;
 
 import com.kodilla.foodpairingfrontend.domain.composition.Composition;
+import com.kodilla.foodpairingfrontend.domain.dish.Dish;
 import com.kodilla.foodpairingfrontend.domain.spoonacular.SpoonacularDish;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
@@ -27,6 +28,19 @@ public class BackendClient {
                 .toUri();
 
         SpoonacularDish[] response = restTemplate.getForObject(url, SpoonacularDish[].class);
+        return Optional.ofNullable(response)
+                .map(Arrays::asList)
+                .orElse(Collections.emptyList());
+    }
+
+    public List<Dish> getDishList() {
+        URI url = UriComponentsBuilder
+                .fromHttpUrl("http://localhost:8080/foodpairing/v1/dishes")
+                .build()
+                .encode()
+                .toUri();
+
+        Dish[] response = restTemplate.getForObject(url, Dish[].class);
         return Optional.ofNullable(response)
                 .map(Arrays::asList)
                 .orElse(Collections.emptyList());

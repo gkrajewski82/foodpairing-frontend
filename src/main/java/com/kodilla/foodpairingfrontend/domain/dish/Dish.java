@@ -1,21 +1,23 @@
-package com.kodilla.foodpairingfrontend.domain.spoonacular;
+package com.kodilla.foodpairingfrontend.domain.dish;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 @NoArgsConstructor
 @AllArgsConstructor
 @Getter
+@Setter
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class SpoonacularDish {
+public class Dish {
 
-    @JsonProperty("id")
+    @JsonProperty("externalSystemId")
     private Long externalSystemId;
 
-    @JsonProperty("title")
+    @JsonProperty("name")
     private String name;
 
     @JsonProperty("readyInMinutes")
@@ -24,6 +26,6 @@ public class SpoonacularDish {
     @JsonProperty("servings")
     private int servings;
 
-    @JsonProperty("sourceUrl")
+    @JsonProperty("recipeUrl")
     private String recipeUrl;
 }
