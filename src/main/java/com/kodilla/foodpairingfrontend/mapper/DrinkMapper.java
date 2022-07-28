@@ -14,6 +14,7 @@ public class DrinkMapper {
                 theCocktailDbDrink.getName(),
                 theCocktailDbDrink.getAlcoholic(),
                 theCocktailDbDrink.getGlass(),
+                theCocktailDbDrink.getInstructions(),
                 new ArrayList<>()
         );
     }

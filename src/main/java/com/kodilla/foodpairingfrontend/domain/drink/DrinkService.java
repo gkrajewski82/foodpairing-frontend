@@ -1,8 +1,6 @@
 package com.kodilla.foodpairingfrontend.domain.drink;
 
 import com.kodilla.foodpairingfrontend.client.BackendClient;
-import com.kodilla.foodpairingfrontend.domain.dish.Dish;
-import com.kodilla.foodpairingfrontend.domain.dish.DishService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.client.HttpClientErrorException;
 

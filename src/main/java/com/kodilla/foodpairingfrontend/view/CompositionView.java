@@ -27,6 +27,7 @@ public class CompositionView extends VerticalLayout {
 
     public CompositionView() {
         add(buttonBar.createButtonBar());
+
         gridDish.setColumns("name", "readyInMinutes", "servings", "recipeUrl");
         HorizontalLayout dishToCompositionMainContent = new HorizontalLayout(gridDish, dishToCompositionForm);
         dishToCompositionMainContent.setSizeFull();

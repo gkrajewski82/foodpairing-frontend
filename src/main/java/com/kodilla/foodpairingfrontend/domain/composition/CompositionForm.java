@@ -41,12 +41,7 @@ public class CompositionForm extends FormLayout {
 
     public void setComposition(Composition composition) {
         binder.setBean(composition);
-
-        if (composition == null) {
-            setVisible(false);
-        } else {
-            setVisible(true);
-            created.focus();
-        }
+        setVisible(true);
+        created.focus();
     }
 }

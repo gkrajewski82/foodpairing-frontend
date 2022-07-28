@@ -26,6 +26,9 @@ public class TheCocktailDbDrink {
     @JsonProperty("strGlass")
     private String glass;
 
+    @JsonProperty("strInstructions")
+    private String instructions;
+
     @JsonProperty("strIngredient1")
     private String ingredient1;
 

@@ -32,6 +32,9 @@ public class Drink {
     @JsonProperty("glass")
     private String glass;
 
+    @JsonProperty("instructions")
+    private String instructions;
+
     @JsonProperty("drinkIngredientList")
     private List<DrinkIngredient> drinkIngredientList;
 }
