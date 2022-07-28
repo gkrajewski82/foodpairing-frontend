@@ -13,7 +13,7 @@ public class ButtonBar {
         Button commentAndRating = new Button("Comments and ratings");
 
         HorizontalLayout buttons = new HorizontalLayout(main, dish, drink, composition, commentAndRating);
-        main.addClickListener(event -> main.getUI().ifPresent(ui -> ui.navigate("foodpairing")));
+        main.addClickListener(event -> main.getUI().ifPresent(ui -> ui.navigate("foodpairing/main")));
         dish.addClickListener(event -> dish.getUI().ifPresent(ui -> ui.navigate("foodpairing/dish")));
         drink.addClickListener(event -> drink.getUI().ifPresent(ui -> ui.navigate("foodpairing/drink")));
         composition.addClickListener(event -> composition.getUI().ifPresent(ui -> ui.navigate("foodpairing/composition")));
