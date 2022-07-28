@@ -1,5 +1,6 @@
 package com.kodilla.foodpairingfrontend.client;
 
+import com.kodilla.foodpairingfrontend.domain.comment.Comment;
 import com.kodilla.foodpairingfrontend.domain.composition.Composition;
 import com.kodilla.foodpairingfrontend.domain.dish.Dish;
 import com.kodilla.foodpairingfrontend.domain.dish.SpoonacularDish;
@@ -23,7 +24,6 @@ public class BackendClient {
                 .build()
                 .encode()
                 .toUri();
-
         SpoonacularDish[] response = restTemplate.getForObject(url, SpoonacularDish[].class);
         return Optional.ofNullable(response)
                 .map(Arrays::asList)
@@ -36,8 +36,28 @@ public class BackendClient {
                 .build()
                 .encode()
                 .toUri();
-
         Dish[] response = restTemplate.getForObject(url, Dish[].class);
+        return Optional.ofNullable(response)
+                .map(Arrays::asList)
+                .orElse(Collections.emptyList());
+    }
+
+    public void deleteDish(Dish dish) {
+        URI url = UriComponentsBuilder
+                .fromHttpUrl("http://localhost:8080/foodpairing/v1/dishes/" + dish.getId())
+                .build()
+                .encode()
+                .toUri();
+        restTemplate.delete(url);
+    }
+
+    public List<Comment> getCommentList() {
+        URI url = UriComponentsBuilder
+                .fromHttpUrl("http://localhost:8080/foodpairing/v1/comments")
+                .build()
+                .encode()
+                .toUri();
+        Comment[] response = restTemplate.getForObject(url, Comment[].class);
         return Optional.ofNullable(response)
                 .map(Arrays::asList)
                 .orElse(Collections.emptyList());
@@ -49,7 +69,6 @@ public class BackendClient {
                 .build()
                 .encode()
                 .toUri();
-
             Composition[] response = restTemplate.getForObject(url, Composition[].class);
             return Optional.ofNullable(response)
                     .map(Arrays::asList)

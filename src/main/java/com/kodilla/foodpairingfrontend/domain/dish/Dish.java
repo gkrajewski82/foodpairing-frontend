@@ -14,6 +14,9 @@ import lombok.Setter;
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class Dish {
 
+    @JsonProperty("id")
+    private Long id;
+
     @JsonProperty("externalSystemId")
     private Long externalSystemId;
 

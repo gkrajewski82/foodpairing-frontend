@@ -1,6 +1,7 @@
 package com.kodilla.foodpairingfrontend.view;
 
 import com.vaadin.flow.component.button.Button;
+import com.vaadin.flow.component.button.ButtonVariant;
 import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 
 public class ButtonBar {
@@ -11,6 +12,12 @@ public class ButtonBar {
         Button drink = new Button("Drinks");
         Button composition = new Button("Compositions");
         Button commentAndRating = new Button("Comments and ratings");
+
+        main.addThemeVariants(ButtonVariant.LUMO_PRIMARY, ButtonVariant.LUMO_CONTRAST);
+        dish.addThemeVariants(ButtonVariant.LUMO_PRIMARY, ButtonVariant.LUMO_CONTRAST);
+        drink.addThemeVariants(ButtonVariant.LUMO_PRIMARY, ButtonVariant.LUMO_CONTRAST);
+        composition.addThemeVariants(ButtonVariant.LUMO_PRIMARY, ButtonVariant.LUMO_CONTRAST);
+        commentAndRating.addThemeVariants(ButtonVariant.LUMO_PRIMARY, ButtonVariant.LUMO_CONTRAST);
 
         HorizontalLayout buttons = new HorizontalLayout(main, dish, drink, composition, commentAndRating);
         main.addClickListener(event -> main.getUI().ifPresent(ui -> ui.navigate("foodpairing/main")));

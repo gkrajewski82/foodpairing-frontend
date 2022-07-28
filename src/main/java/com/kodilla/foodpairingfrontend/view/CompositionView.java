@@ -6,7 +6,7 @@ import com.vaadin.flow.router.Route;
 @Route("foodpairing/composition")
 public class CompositionView extends VerticalLayout {
 
-    ButtonBar buttonBar = new ButtonBar();
+    private ButtonBar buttonBar = new ButtonBar();
 
     public CompositionView() {
         add(buttonBar.createButtonBar());

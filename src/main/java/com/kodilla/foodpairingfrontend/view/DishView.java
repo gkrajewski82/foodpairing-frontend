@@ -1,10 +1,6 @@
 package com.kodilla.foodpairingfrontend.view;
 
-import com.kodilla.foodpairingfrontend.domain.dish.Dish;
-import com.kodilla.foodpairingfrontend.domain.dish.DishForm;
-import com.kodilla.foodpairingfrontend.domain.dish.DishService;
-import com.kodilla.foodpairingfrontend.domain.dish.SpoonacularDish;
-import com.kodilla.foodpairingfrontend.domain.dish.SpoonacularDishService;
+import com.kodilla.foodpairingfrontend.domain.dish.*;
 import com.vaadin.flow.component.grid.Grid;
 import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
@@ -14,12 +10,12 @@ import com.vaadin.flow.router.Route;
 @Route("foodpairing/dish")
 public class DishView extends VerticalLayout{
 
-
     private SpoonacularDishService spoonacularDishService = SpoonacularDishService.getInstance();
     private DishService dishService = DishService.getInstance();
-    ButtonBar buttonBar = new ButtonBar();
+    private ButtonBar buttonBar = new ButtonBar();
 
     private DishForm dishForm = new DishForm(this);
+    private SpoonacularDishForm spoonacularDishForm = new SpoonacularDishForm(this);
 
     private Grid<SpoonacularDish> gridSpoonacularDish = new Grid<>(SpoonacularDish.class);
     private Grid<Dish> gridDish = new Grid<>(Dish.class);
@@ -27,18 +23,24 @@ public class DishView extends VerticalLayout{
 
     public DishView() {
         add(buttonBar.createButtonBar());
+
         createSearchField();
-        gridSpoonacularDish.setColumns("externalSystemId", "name", "readyInMinutes", "servings", "recipeUrl");
-        add(findByNameFragment, gridSpoonacularDish);
-
-        gridDish.setColumns("externalSystemId", "name", "readyInMinutes", "servings", "recipeUrl");
-        HorizontalLayout mainContent = new HorizontalLayout(gridDish, dishForm);
-        mainContent.setSizeFull();
-        gridDish.setSizeFull();
-
-        add(mainContent);
-        refreshDish();
+        gridSpoonacularDish.setColumns("name", "readyInMinutes", "servings", "recipeUrl");
+        HorizontalLayout spoonacularDishMainContent = new HorizontalLayout(gridSpoonacularDish, spoonacularDishForm);
+        spoonacularDishMainContent.setSizeFull();
+        gridSpoonacularDish.setSizeFull();
+        add(findByNameFragment, spoonacularDishMainContent);
         setSizeFull();
+        gridSpoonacularDish.asSingleSelect().addValueChangeListener(event -> spoonacularDishForm.setSpoonacularDish(gridSpoonacularDish.asSingleSelect().getValue()));
+
+        gridDish.setColumns("name", "readyInMinutes", "servings", "recipeUrl");
+        HorizontalLayout dishMainContent = new HorizontalLayout(gridDish, dishForm);
+        dishMainContent.setSizeFull();
+        gridDish.setSizeFull();
+        add(dishMainContent);
+        setSizeFull();
+        refreshDish();
+        gridDish.asSingleSelect().addValueChangeListener(event -> dishForm.setDish(gridDish.asSingleSelect().getValue()));
     }
 
     public void refreshSpoonacular() {

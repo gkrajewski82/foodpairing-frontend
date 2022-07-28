@@ -30,11 +30,7 @@ public class DishService {
         }
     }
 
-/*    public void save(Dish dish) {
-        this.books.add(dish);
-    }
-
     public void delete(Dish dish) {
-        this.books.remove(dish);
-    }*/
+        backendClient.deleteDish(dish);
+    }
 }
