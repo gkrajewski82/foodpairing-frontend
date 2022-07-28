@@ -2,10 +2,13 @@ package com.kodilla.foodpairingfrontend.domain.dish;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.kodilla.foodpairingfrontend.domain.composition.Composition;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+
+import java.util.List;
 
 @NoArgsConstructor
 @AllArgsConstructor
@@ -31,4 +34,7 @@ public class Dish {
 
     @JsonProperty("recipeUrl")
     private String recipeUrl;
+
+    @JsonProperty("compositionList")
+    private List<Composition> compositionList;
 }

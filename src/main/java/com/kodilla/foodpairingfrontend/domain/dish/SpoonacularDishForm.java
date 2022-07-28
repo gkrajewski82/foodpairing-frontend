@@ -1,5 +1,6 @@
 package com.kodilla.foodpairingfrontend.domain.dish;
 
+import com.kodilla.foodpairingfrontend.mapper.DishMapper;
 import com.kodilla.foodpairingfrontend.view.DishView;
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.button.ButtonVariant;
@@ -12,6 +13,7 @@ public class SpoonacularDishForm extends FormLayout {
 
     private DishView dishView;
     private SpoonacularDishService spoonacularDishService = SpoonacularDishService.getInstance();
+    private DishMapper dishMapper = new DishMapper();
 
     private TextField name = new TextField("Name");
     private TextField readyInMinutes = new TextField("Ready in minutes");
@@ -27,17 +29,16 @@ public class SpoonacularDishForm extends FormLayout {
         addDish.addThemeVariants(ButtonVariant.LUMO_PRIMARY);
         add(name, readyInMinutes, servings, recipeUrl, addDish);
         binder.bindInstanceFields(this);
-        //save.addClickListener(event -> save());
-        //delete.addClickListener(event -> delete());
-
+        addDish.addClickListener(event -> save());
     }
 
-/*    private void save() {
+    private void save() {
         SpoonacularDish spoonacularDish = binder.getBean();
-        //dishService.save(dish);
+        Dish dish = dishMapper.mapSpoonacularDishToDish(spoonacularDish);
+        spoonacularDishService.saveDish(dish);
         dishView.refreshDish();
-        setDish(null);
-    }*/
+        //setDish(null);
+    }
 
     public void setSpoonacularDish(SpoonacularDish spoonacularDish) {
         binder.setBean(spoonacularDish);

@@ -1,6 +1,7 @@
 package com.kodilla.foodpairingfrontend.domain.dish;
 
 import com.kodilla.foodpairingfrontend.client.BackendClient;
+import com.kodilla.foodpairingfrontend.mapper.DishMapper;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.client.HttpClientErrorException;
 
@@ -28,5 +29,9 @@ public class SpoonacularDishService {
         } catch (HttpClientErrorException e) {
             return Collections.EMPTY_LIST;
         }
+    }
+
+    public Dish saveDish(Dish dish) {
+        return backendClient.saveDish(dish);
     }
 }

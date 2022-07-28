@@ -30,6 +30,16 @@ public class BackendClient {
                 .orElse(Collections.emptyList());
     }
 
+    public Dish saveDish(Dish dish) {
+        URI url = UriComponentsBuilder
+                .fromHttpUrl("http://localhost:8080/foodpairing/v1/dishes")
+                .build()
+                .encode()
+                .toUri();
+        Dish response = restTemplate.postForObject(url, dish, Dish.class);
+        return response;
+    }
+
     public List<Dish> getDishList() {
         URI url = UriComponentsBuilder
                 .fromHttpUrl("http://localhost:8080/foodpairing/v1/dishes")
