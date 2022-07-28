@@ -4,6 +4,7 @@ import com.kodilla.foodpairingfrontend.domain.comment.Comment;
 import com.kodilla.foodpairingfrontend.domain.composition.Composition;
 import com.kodilla.foodpairingfrontend.domain.dish.Dish;
 import com.kodilla.foodpairingfrontend.domain.dish.SpoonacularDish;
+import com.kodilla.foodpairingfrontend.domain.drink.Drink;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.util.UriComponentsBuilder;
 
@@ -83,6 +84,16 @@ public class BackendClient {
             return Optional.ofNullable(response)
                     .map(Arrays::asList)
                     .orElse(Collections.emptyList());
+    }
+
+    public Composition createComposition(Composition composition) {
+        URI url = UriComponentsBuilder
+                .fromHttpUrl("http://localhost:8080/foodpairing/v1/compositions")
+                .build()
+                .encode()
+                .toUri();
+        Composition response = restTemplate.postForObject(url, composition, Composition.class);
+        return response;
     }
 
 }

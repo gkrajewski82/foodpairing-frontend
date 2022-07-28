@@ -2,11 +2,13 @@ package com.kodilla.foodpairingfrontend.domain.composition;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.kodilla.foodpairingfrontend.domain.comment.Comment;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import java.util.Date;
+import java.util.List;
 
 @Getter
 @NoArgsConstructor
@@ -25,4 +27,7 @@ public class Composition {
 
     @JsonProperty("created")
     private Date created;
+
+    @JsonProperty("commentList")
+    private List<Comment> commentList;
 }

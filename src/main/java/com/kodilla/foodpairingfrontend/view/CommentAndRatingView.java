@@ -3,6 +3,7 @@ package com.kodilla.foodpairingfrontend.view;
 import com.kodilla.foodpairingfrontend.domain.comment.Comment;
 import com.kodilla.foodpairingfrontend.domain.comment.CommentForm;
 import com.kodilla.foodpairingfrontend.domain.comment.CommentService;
+import com.kodilla.foodpairingfrontend.view.component.ButtonBar;
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.button.ButtonVariant;
 import com.vaadin.flow.component.grid.Grid;

@@ -1,6 +1,7 @@
 package com.kodilla.foodpairingfrontend.view;
 
 import com.kodilla.foodpairingfrontend.domain.dish.*;
+import com.kodilla.foodpairingfrontend.view.component.ButtonBar;
 import com.vaadin.flow.component.grid.Grid;
 import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;

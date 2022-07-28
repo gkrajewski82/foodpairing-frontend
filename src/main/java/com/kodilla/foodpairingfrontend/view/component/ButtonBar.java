@@ -1,4 +1,4 @@
-package com.kodilla.foodpairingfrontend.view;
+package com.kodilla.foodpairingfrontend.view.component;
 
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.button.ButtonVariant;
