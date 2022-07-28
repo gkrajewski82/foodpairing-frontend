@@ -29,6 +29,14 @@ public class CompositionForm extends FormLayout {
         delete.addThemeVariants(ButtonVariant.LUMO_PRIMARY);
         add(id, dishId, drinkId, created, buttons);
         binder.bindInstanceFields(this);
+        delete.addClickListener(event -> delete());
+    }
+
+    private void delete() {
+        Composition composition = binder.getBean();
+        compositionService.delete(composition);
+        compositionView.refreshComposition();
+        setComposition(null);
     }
 
     public void setComposition(Composition composition) {

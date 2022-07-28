@@ -4,6 +4,7 @@ import com.kodilla.foodpairingfrontend.domain.comment.Comment;
 import com.kodilla.foodpairingfrontend.domain.composition.Composition;
 import com.kodilla.foodpairingfrontend.domain.dish.Dish;
 import com.kodilla.foodpairingfrontend.domain.dish.SpoonacularDish;
+import com.kodilla.foodpairingfrontend.domain.drink.Drink;
 import com.kodilla.foodpairingfrontend.domain.drink.TheCocktailDbDrink;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.util.UriComponentsBuilder;
@@ -38,6 +39,28 @@ public class BackendClient {
                 .encode()
                 .toUri();
         TheCocktailDbDrink[] response = restTemplate.getForObject(url, TheCocktailDbDrink[].class);
+        return Optional.ofNullable(response)
+                .map(Arrays::asList)
+                .orElse(Collections.emptyList());
+    }
+
+    public Drink saveDrink(Drink drink) {
+        URI url = UriComponentsBuilder
+                .fromHttpUrl("http://localhost:8080/foodpairing/v1/drinks")
+                .build()
+                .encode()
+                .toUri();
+        Drink response = restTemplate.postForObject(url, drink, Drink.class);
+        return response;
+    }
+
+    public List<Drink> getDrinkList() {
+        URI url = UriComponentsBuilder
+                .fromHttpUrl("http://localhost:8080/foodpairing/v1/drinks")
+                .build()
+                .encode()
+                .toUri();
+        Drink[] response = restTemplate.getForObject(url, Drink[].class);
         return Optional.ofNullable(response)
                 .map(Arrays::asList)
                 .orElse(Collections.emptyList());
@@ -108,4 +131,12 @@ public class BackendClient {
         return response;
     }
 
+    public void deleteComposition(Composition composition) {
+        URI url = UriComponentsBuilder
+                .fromHttpUrl("http://localhost:8080/foodpairing/v1/compositions/" + composition.getId())
+                .build()
+                .encode()
+                .toUri();
+        restTemplate.delete(url);
+    }
 }

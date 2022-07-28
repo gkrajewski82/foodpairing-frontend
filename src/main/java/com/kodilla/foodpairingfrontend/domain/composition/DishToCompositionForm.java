@@ -2,6 +2,11 @@ package com.kodilla.foodpairingfrontend.domain.composition;
 
 import com.kodilla.foodpairingfrontend.domain.dish.Dish;
 import com.kodilla.foodpairingfrontend.domain.dish.DishService;
+import com.kodilla.foodpairingfrontend.domain.drink.Drink;
+import com.kodilla.foodpairingfrontend.domain.drink.DrinkService;
+import com.kodilla.foodpairingfrontend.domain.drink.TheCocktailDbDrink;
+import com.kodilla.foodpairingfrontend.domain.drink.TheCocktailDbDrinkService;
+import com.kodilla.foodpairingfrontend.mapper.DrinkMapper;
 import com.kodilla.foodpairingfrontend.view.CompositionView;
 import com.kodilla.foodpairingfrontend.view.DishView;
 import com.vaadin.flow.component.button.Button;
@@ -10,10 +15,16 @@ import com.vaadin.flow.component.formlayout.FormLayout;
 import com.vaadin.flow.component.textfield.TextField;
 import com.vaadin.flow.data.binder.Binder;
 
+import java.util.ArrayList;
+import java.util.Date;
+
 public class DishToCompositionForm extends FormLayout {
 
     private CompositionView compositionView;
     private CompositionService compositionService = CompositionService.getInstance();
+    private DrinkService drinkService = new DrinkService();
+    private TheCocktailDbDrinkService theCocktailDbDrinkService = TheCocktailDbDrinkService.getInstance();
+    private DrinkMapper drinkMapper = new DrinkMapper();
 
     private TextField name = new TextField("Name");
     private TextField readyInMinutes = new TextField("Ready in minutes");
@@ -28,18 +39,24 @@ public class DishToCompositionForm extends FormLayout {
         createComposition.addThemeVariants(ButtonVariant.LUMO_PRIMARY);
         add(name, readyInMinutes, servings, recipeUrl, createComposition);
         binder.bindInstanceFields(this);
-        //createComposition.addClickListener(event -> saveComposition());
+        createComposition.addClickListener(event -> save());
     }
 
-/*    public Composition saveComposition() {
+    public void save() {
         Dish dish = binder.getBean();
-        // pobać drinka
-        // ustawic setterami albo konstruktorem pola Composition
-
-        compositionService.saveComposition();
-
-        return null;
-    }*/
+        TheCocktailDbDrink theCocktailDbDrink = theCocktailDbDrinkService.getTheCocktailDbDrinks().get(0);
+        Drink drink = drinkMapper.mapTheCocktailDbDrinkToDrink(theCocktailDbDrink);
+        Drink savedDrink = drinkService.saveDrink(drink);
+        Composition composition = new Composition(
+                null,
+                dish.getId(),
+                savedDrink.getId(),
+                new Date(),
+                new ArrayList<>()
+        );
+        compositionService.save(composition);
+        compositionView.refreshComposition();
+    }
 
     public void setDish(Dish dish) {
         binder.setBean(dish);

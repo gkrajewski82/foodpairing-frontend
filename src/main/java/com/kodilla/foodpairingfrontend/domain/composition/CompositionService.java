@@ -30,7 +30,11 @@ public class CompositionService {
         }
     }
 
-/*    public Composition saveComposition(Composition composition) {
+    public Composition save(Composition composition) {
         return backendClient.createComposition(composition);
-    }*/
+    }
+
+    public void delete(Composition composition) {
+        backendClient.deleteComposition(composition);
+    }
 }
