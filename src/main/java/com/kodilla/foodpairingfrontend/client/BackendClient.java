@@ -67,9 +67,9 @@ public class BackendClient {
                 .orElse(Collections.emptyList());
     }
 
-    public List<DrinkIngredient> getDrinkIngredientList() {
+    public List<DrinkIngredient> getDrinkIngredientForDrinkList(String drinkId) {
         URI url = UriComponentsBuilder
-                .fromHttpUrl("http://localhost:8080/foodpairing/v1/drinkingredients")
+                .fromHttpUrl("http://localhost:8080/foodpairing/v1/drinkingredients/" + drinkId)
                 .build()
                 .encode()
                 .toUri();

@@ -12,6 +12,7 @@ import com.vaadin.flow.component.button.ButtonVariant;
 import com.vaadin.flow.component.grid.Grid;
 import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
+import com.vaadin.flow.component.textfield.TextField;
 import com.vaadin.flow.router.Route;
 
 @Route("foodpairing/drink")
@@ -27,6 +28,7 @@ public class DrinkView extends VerticalLayout {
 
     private Grid<Drink> gridDrink = new Grid<>(Drink.class);
     private Grid<DrinkIngredient> gridDrinkIngredient = new Grid<>(DrinkIngredient.class);
+    private TextField findByDrinkId = new TextField();
 
     public DrinkView() {
         add(buttonBar.createButtonBar());
@@ -41,16 +43,18 @@ public class DrinkView extends VerticalLayout {
         refreshDrink();
         gridDrink.asSingleSelect().addValueChangeListener(event -> drinkForm.setDrink(gridDrink.asSingleSelect().getValue()));
 
+        createSearchField();
         addNewIngredient.addClickListener(e -> {
             gridDrinkIngredient.asSingleSelect().clear();
             drinkIngredientForm.setDrinkIngredient(new DrinkIngredient());
         });
         addNewIngredient.addThemeVariants(ButtonVariant.LUMO_PRIMARY);
-        gridDrinkIngredient.setColumns("name", "measure", "drinkId");
+        gridDrinkIngredient.setColumns("drinkId", "name", "measure");
         HorizontalLayout drinkIngredientMainContent = new HorizontalLayout(gridDrinkIngredient, drinkIngredientForm);
         drinkIngredientMainContent.setSizeFull();
         gridDrinkIngredient.setSizeFull();
-        add(addNewIngredient, drinkIngredientMainContent);
+        HorizontalLayout toolbar = new HorizontalLayout(findByDrinkId, addNewIngredient);
+        add(toolbar, drinkIngredientMainContent);
         drinkIngredientForm.setDrinkIngredient(null);
         setSizeFull();
         refreshDrinkIngredient();
@@ -62,6 +66,12 @@ public class DrinkView extends VerticalLayout {
     }
 
     public void refreshDrinkIngredient() {
-        gridDrinkIngredient.setItems(drinkIngredientService.getDrinkIngredients());
+        gridDrinkIngredient.setItems(drinkIngredientService.getDrinkIngredientsForDrink(findByDrinkId.getValue()));
+    }
+
+    public void createSearchField() {
+        findByDrinkId.setPlaceholder("Search ingr. by dish id...");
+        findByDrinkId.setClearButtonVisible(true);
+        findByDrinkId.addValueChangeListener(e -> refreshDrinkIngredient());
     }
 }

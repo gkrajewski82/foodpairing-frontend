@@ -13,9 +13,9 @@ public class DrinkIngredientForm extends FormLayout {
     private DrinkView drinkView;
     private DrinkIngredientService drinkIngredientService = DrinkIngredientService.getInstance();
 
+    private TextField drinkId = new TextField("Drink id");
     private TextField name = new TextField("Name");
     private TextField measure = new TextField("Measure");
-    private TextField drinkId = new TextField("Drink id");
 
     private Button update = new Button("Update");
     private Button delete = new Button("Delete");
@@ -26,7 +26,7 @@ public class DrinkIngredientForm extends FormLayout {
         HorizontalLayout buttons = new HorizontalLayout(update, delete);
         update.addThemeVariants(ButtonVariant.LUMO_PRIMARY);
         delete.addThemeVariants(ButtonVariant.LUMO_PRIMARY);
-        add(name, measure, drinkId, buttons);
+        add(drinkId, name, measure, buttons);
         binder.bindInstanceFields(this);
     }
 
