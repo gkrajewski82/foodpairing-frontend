@@ -6,6 +6,7 @@ import com.kodilla.foodpairingfrontend.domain.dish.Dish;
 import com.kodilla.foodpairingfrontend.domain.dish.SpoonacularDish;
 import com.kodilla.foodpairingfrontend.domain.drink.Drink;
 import com.kodilla.foodpairingfrontend.domain.drink.TheCocktailDbDrink;
+import com.kodilla.foodpairingfrontend.domain.drinkingredient.DrinkIngredient;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.util.UriComponentsBuilder;
 
@@ -64,6 +65,28 @@ public class BackendClient {
         return Optional.ofNullable(response)
                 .map(Arrays::asList)
                 .orElse(Collections.emptyList());
+    }
+
+    public List<DrinkIngredient> getDrinkIngredientList() {
+        URI url = UriComponentsBuilder
+                .fromHttpUrl("http://localhost:8080/foodpairing/v1/drinkingredients")
+                .build()
+                .encode()
+                .toUri();
+        DrinkIngredient[] response = restTemplate.getForObject(url, DrinkIngredient[].class);
+        return Optional.ofNullable(response)
+                .map(Arrays::asList)
+                .orElse(Collections.emptyList());
+    }
+
+    public DrinkIngredient saveDrinkIngredient(DrinkIngredient drinkIngredient) {
+        URI url = UriComponentsBuilder
+                .fromHttpUrl("http://localhost:8080/foodpairing/v1/drinkingredients")
+                .build()
+                .encode()
+                .toUri();
+        DrinkIngredient response = restTemplate.postForObject(url, drinkIngredient, DrinkIngredient.class);
+        return response;
     }
 
     public Dish saveDish(Dish dish) {

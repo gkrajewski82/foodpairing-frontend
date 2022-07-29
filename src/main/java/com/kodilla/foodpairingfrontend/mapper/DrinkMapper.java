@@ -7,7 +7,7 @@ import java.util.ArrayList;
 
 public class DrinkMapper {
 
-    public Drink mapTheCocktailDbDrinkToDrink(TheCocktailDbDrink theCocktailDbDrink) {
+    public Drink mapToDrink(TheCocktailDbDrink theCocktailDbDrink) {
         return new Drink(
                 null,
                 theCocktailDbDrink.getExternalSystemId(),
