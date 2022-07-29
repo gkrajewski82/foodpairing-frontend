@@ -1,22 +1,20 @@
-package com.kodilla.foodpairingfrontend.domain.comment;
+package com.kodilla.foodpairingfrontend.domain.reaction;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.kodilla.foodpairingfrontend.domain.reaction.Reaction;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.util.Date;
-import java.util.List;
 
 @NoArgsConstructor
 @AllArgsConstructor
 @Getter
 @Setter
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class Comment {
+public class Reaction {
 
     @JsonProperty("id")
     private Long id;
@@ -27,9 +25,6 @@ public class Comment {
     @JsonProperty("created")
     private Date created;
 
-    @JsonProperty("compositionId")
-    private Long compositionId;
-
-    @JsonProperty("reactionList")
-    private List<Reaction> reactionList;
+    @JsonProperty("commentId")
+    private Long commentId;
 }

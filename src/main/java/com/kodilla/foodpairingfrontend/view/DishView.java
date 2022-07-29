@@ -20,6 +20,7 @@ public class DishView extends VerticalLayout{
 
     private Grid<SpoonacularDish> gridSpoonacularDish = new Grid<>(SpoonacularDish.class);
     private Grid<Dish> gridDish = new Grid<>(Dish.class);
+
     private TextField findByNameFragment = new TextField();
 
     public DishView() {

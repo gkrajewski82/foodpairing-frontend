@@ -29,4 +29,24 @@ public class CommentService {
             return Collections.EMPTY_LIST;
         }
     }
+
+    public List<Comment> getCommentsForComposition(String commentId) {
+        try {
+            return backendClient.getCommentsForCompositionList(commentId);
+        } catch (HttpClientErrorException e) {
+            return Collections.EMPTY_LIST;
+        }
+    }
+
+    public Comment saveComment(Comment comment) {
+        return backendClient.saveComment(comment);
+    }
+
+    public void updateComment(Comment comment) {
+        backendClient.updateComment(comment);
+    }
+
+    public void deleteComment(Comment comment) {
+        backendClient.deleteComment(comment);
+    }
 }

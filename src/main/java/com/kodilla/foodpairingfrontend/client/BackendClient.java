@@ -7,6 +7,7 @@ import com.kodilla.foodpairingfrontend.domain.dish.SpoonacularDish;
 import com.kodilla.foodpairingfrontend.domain.drink.Drink;
 import com.kodilla.foodpairingfrontend.domain.drink.TheCocktailDbDrink;
 import com.kodilla.foodpairingfrontend.domain.drinkingredient.DrinkIngredient;
+import com.kodilla.foodpairingfrontend.domain.reaction.Reaction;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.util.UriComponentsBuilder;
 
@@ -85,7 +86,7 @@ public class BackendClient {
         restTemplate.delete(url);
     }
 
-    public List<DrinkIngredient> getDrinkIngredientForDrinkList(String drinkId) {
+    public List<DrinkIngredient> getDrinkIngredientsForDrinkList(String drinkId) {
         URI url = UriComponentsBuilder
                 .fromHttpUrl("http://localhost:8080/foodpairing/v1/drinkingredients/" + drinkId)
                 .build()
@@ -166,6 +167,98 @@ public class BackendClient {
         return Optional.ofNullable(response)
                 .map(Arrays::asList)
                 .orElse(Collections.emptyList());
+    }
+
+    public List<Comment> getCommentsForCompositionList(String compositionId) {
+        URI url = UriComponentsBuilder
+                .fromHttpUrl("http://localhost:8080/foodpairing/v1/comments/" + compositionId)
+                .build()
+                .encode()
+                .toUri();
+        Comment[] response = restTemplate.getForObject(url, Comment[].class);
+        return Optional.ofNullable(response)
+                .map(Arrays::asList)
+                .orElse(Collections.emptyList());
+    }
+
+    public Comment saveComment(Comment comment) {
+        URI url = UriComponentsBuilder
+                .fromHttpUrl("http://localhost:8080/foodpairing/v1/comments")
+                .build()
+                .encode()
+                .toUri();
+        Comment response = restTemplate.postForObject(url, comment, Comment.class);
+        return response;
+    }
+
+    public void updateComment(Comment comment) {
+        URI url = UriComponentsBuilder
+                .fromHttpUrl("http://localhost:8080/foodpairing/v1/comments")
+                .build()
+                .encode()
+                .toUri();
+        restTemplate.put(url, comment);
+    }
+
+    public void deleteComment(Comment comment) {
+        URI url = UriComponentsBuilder
+                .fromHttpUrl("http://localhost:8080/foodpairing/v1/comments/" + comment.getId())
+                .build()
+                .encode()
+                .toUri();
+        restTemplate.delete(url);
+    }
+
+    public List<Reaction> getReactionList() {
+        URI url = UriComponentsBuilder
+                .fromHttpUrl("http://localhost:8080/foodpairing/v1/reactions")
+                .build()
+                .encode()
+                .toUri();
+        Reaction[] response = restTemplate.getForObject(url, Reaction[].class);
+        return Optional.ofNullable(response)
+                .map(Arrays::asList)
+                .orElse(Collections.emptyList());
+    }
+
+    public List<Reaction> getReactionsForCommentList(String commentId) {
+        URI url = UriComponentsBuilder
+                .fromHttpUrl("http://localhost:8080/foodpairing/v1/reactions/" + commentId)
+                .build()
+                .encode()
+                .toUri();
+        Reaction[] response = restTemplate.getForObject(url, Reaction[].class);
+        return Optional.ofNullable(response)
+                .map(Arrays::asList)
+                .orElse(Collections.emptyList());
+    }
+
+    public Reaction saveReaction(Reaction reaction) {
+        URI url = UriComponentsBuilder
+                .fromHttpUrl("http://localhost:8080/foodpairing/v1/reactions")
+                .build()
+                .encode()
+                .toUri();
+        Reaction response = restTemplate.postForObject(url, reaction, Reaction.class);
+        return response;
+    }
+
+    public void updateReaction(Reaction reaction) {
+        URI url = UriComponentsBuilder
+                .fromHttpUrl("http://localhost:8080/foodpairing/v1/reactions")
+                .build()
+                .encode()
+                .toUri();
+        restTemplate.put(url, reaction);
+    }
+
+    public void deleteReaction(Reaction reaction) {
+        URI url = UriComponentsBuilder
+                .fromHttpUrl("http://localhost:8080/foodpairing/v1/reactions/" + reaction.getId())
+                .build()
+                .encode()
+                .toUri();
+        restTemplate.delete(url);
     }
 
     public List<Composition> getCompositionList() {

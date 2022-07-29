@@ -15,12 +15,12 @@ import com.vaadin.flow.router.Route;
 @Route("foodpairing/composition")
 public class CompositionView extends VerticalLayout {
 
-    private CompositionService compositionService = CompositionService.getInstance();
     private DishService dishService = DishService.getInstance();
+    private CompositionService compositionService = CompositionService.getInstance();
     private ButtonBar buttonBar = new ButtonBar();
 
-    private CompositionForm compositionForm = new CompositionForm(this);
     private DishToCompositionForm dishToCompositionForm = new DishToCompositionForm(this);
+    private CompositionForm compositionForm = new CompositionForm(this);
 
     private Grid<Dish> gridDish = new Grid<>(Dish.class);
     private Grid<Composition> gridComposition = new Grid<>(Composition.class);
@@ -28,7 +28,7 @@ public class CompositionView extends VerticalLayout {
     public CompositionView() {
         add(buttonBar.createButtonBar());
 
-        gridDish.setColumns("name", "readyInMinutes", "servings", "recipeUrl");
+        gridDish.setColumns("id", "name", "readyInMinutes", "servings", "recipeUrl");
         HorizontalLayout dishToCompositionMainContent = new HorizontalLayout(gridDish, dishToCompositionForm);
         dishToCompositionMainContent.setSizeFull();
         gridDish.setSizeFull();

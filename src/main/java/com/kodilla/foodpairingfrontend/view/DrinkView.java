@@ -70,7 +70,7 @@ public class DrinkView extends VerticalLayout {
     }
 
     public void createSearchField() {
-        findByDrinkId.setPlaceholder("Search ingr. by dish id...");
+        findByDrinkId.setPlaceholder("Search by dish id...");
         findByDrinkId.setClearButtonVisible(true);
         findByDrinkId.addValueChangeListener(e -> refreshDrinkIngredient());
     }

@@ -18,21 +18,21 @@ public class DrinkIngredientForm extends FormLayout {
     private TextField measure = new TextField("Measure");
 
     private Button save = new Button("Save");
-    private Button delete = new Button("Delete");
     private Button update = new Button("Update");
+    private Button delete = new Button("Delete");
     private Binder<DrinkIngredient> binder = new Binder<>(DrinkIngredient.class);
 
     public DrinkIngredientForm(DrinkView drinkView) {
         this.drinkView = drinkView;
-        HorizontalLayout buttons = new HorizontalLayout(save, delete, update);
+        HorizontalLayout buttons = new HorizontalLayout(save, update, delete);
         save.addThemeVariants(ButtonVariant.LUMO_PRIMARY);
-        delete.addThemeVariants(ButtonVariant.LUMO_PRIMARY);
         update.addThemeVariants(ButtonVariant.LUMO_PRIMARY);
+        delete.addThemeVariants(ButtonVariant.LUMO_PRIMARY);
         add(drinkId, name, measure, buttons);
         binder.bindInstanceFields(this);
         save.addClickListener(event -> save());
-        delete.addClickListener(event -> delete());
         update.addClickListener(event -> update());
+        delete.addClickListener(event -> delete());
     }
 
     private void save() {

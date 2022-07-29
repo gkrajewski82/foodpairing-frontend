@@ -26,8 +26,7 @@ public class DrinkIngredientService {
 
     public List<DrinkIngredient> getDrinkIngredientsForDrink(String drinkId) {
         try {
-            drinkIngredientList = backendClient.getDrinkIngredientForDrinkList(drinkId);
-            return drinkIngredientList;
+            return backendClient.getDrinkIngredientsForDrinkList(drinkId);
         } catch (HttpClientErrorException e) {
             return Collections.EMPTY_LIST;
         }
