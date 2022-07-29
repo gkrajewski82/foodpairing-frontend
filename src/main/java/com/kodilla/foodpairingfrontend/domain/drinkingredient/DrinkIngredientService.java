@@ -23,7 +23,7 @@ public class DrinkIngredientService {
         return drinkIngredientService;
     }
 
-    public List<DrinkIngredient> getDrinkIngredientList() {
+    public List<DrinkIngredient> getDrinkIngredients() {
         try {
             drinkIngredientList = backendClient.getDrinkIngredientList();
             return drinkIngredientList;

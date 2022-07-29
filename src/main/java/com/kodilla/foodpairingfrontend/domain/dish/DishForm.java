@@ -26,7 +26,6 @@ public class DishForm extends FormLayout {
         add(name, readyInMinutes, servings, recipeUrl, delete);
         binder.bindInstanceFields(this);
         delete.addClickListener(event -> delete());
-
     }
 
     private void delete() {
