@@ -76,6 +76,15 @@ public class BackendClient {
                 .orElse(Collections.emptyList());
     }
 
+    public void deleteDrink(Long drinkId) {
+        URI url = UriComponentsBuilder
+                .fromHttpUrl("http://localhost:8080/foodpairing/v1/drinks/" + drinkId)
+                .build()
+                .encode()
+                .toUri();
+        restTemplate.delete(url);
+    }
+
     public List<DrinkIngredient> getDrinkIngredientForDrinkList(String drinkId) {
         URI url = UriComponentsBuilder
                 .fromHttpUrl("http://localhost:8080/foodpairing/v1/drinkingredients/" + drinkId)
@@ -188,5 +197,14 @@ public class BackendClient {
                 .encode()
                 .toUri();
         restTemplate.delete(url);
+    }
+
+    public void updateComposition(Composition composition) {
+        URI url = UriComponentsBuilder
+                .fromHttpUrl("http://localhost:8080/foodpairing/v1/compositions")
+                .build()
+                .encode()
+                .toUri();
+        restTemplate.put(url, composition);
     }
 }

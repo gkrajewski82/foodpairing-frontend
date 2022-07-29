@@ -1,6 +1,7 @@
 package com.kodilla.foodpairingfrontend.domain.drink;
 
 import com.kodilla.foodpairingfrontend.client.BackendClient;
+import com.kodilla.foodpairingfrontend.domain.dish.Dish;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.client.HttpClientErrorException;
 
@@ -36,5 +37,9 @@ public class DrinkService {
 
     public void updateDrink(Drink drink) {
         backendClient.updateDrink(drink);
+    }
+
+    public void delete(Long drinkId) {
+        backendClient.deleteDrink(drinkId);
     }
 }

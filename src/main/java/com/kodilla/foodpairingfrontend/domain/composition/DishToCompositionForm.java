@@ -45,10 +45,10 @@ public class DishToCompositionForm extends FormLayout {
         createComposition.addThemeVariants(ButtonVariant.LUMO_PRIMARY);
         add(name, readyInMinutes, servings, recipeUrl, createComposition);
         binder.bindInstanceFields(this);
-        createComposition.addClickListener(event -> save());
+        createComposition.addClickListener(event -> saveComposition());
     }
 
-    public void save() {
+    public void saveComposition() {
         Dish dish = binder.getBean();
         TheCocktailDbDrink theCocktailDbDrink = theCocktailDbDrinkService.getTheCocktailDbDrinks().get(0);
         Drink drink = drinkMapper.mapToDrink(theCocktailDbDrink);

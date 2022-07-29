@@ -37,4 +37,8 @@ public class CompositionService {
     public void delete(Composition composition) {
         backendClient.deleteComposition(composition);
     }
+
+    public void update(Composition composition) {
+        backendClient.updateComposition(composition);
+    }
 }
