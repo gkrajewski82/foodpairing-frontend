@@ -33,4 +33,8 @@ public class DrinkService {
     public Drink saveDrink(Drink drink) {
         return backendClient.saveDrink(drink);
     }
+
+    public void updateDrink(Drink drink) {
+        backendClient.updateDrink(drink);
+    }
 }

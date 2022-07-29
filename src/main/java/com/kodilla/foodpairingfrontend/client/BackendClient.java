@@ -55,6 +55,15 @@ public class BackendClient {
         return response;
     }
 
+    public void updateDrink(Drink drink) {
+        URI url = UriComponentsBuilder
+                .fromHttpUrl("http://localhost:8080/foodpairing/v1/drinks")
+                .build()
+                .encode()
+                .toUri();
+        restTemplate.put(url, drink);
+    }
+
     public List<Drink> getDrinkList() {
         URI url = UriComponentsBuilder
                 .fromHttpUrl("http://localhost:8080/foodpairing/v1/drinks")
@@ -87,6 +96,24 @@ public class BackendClient {
                 .toUri();
         DrinkIngredient response = restTemplate.postForObject(url, drinkIngredient, DrinkIngredient.class);
         return response;
+    }
+
+    public void updateDrinkIngredient(DrinkIngredient drinkIngredient) {
+        URI url = UriComponentsBuilder
+                .fromHttpUrl("http://localhost:8080/foodpairing/v1/drinkingredients")
+                .build()
+                .encode()
+                .toUri();
+        restTemplate.put(url, drinkIngredient);
+    }
+
+    public void deleteDrinkIngredient(DrinkIngredient drinkIngredient) {
+        URI url = UriComponentsBuilder
+                .fromHttpUrl("http://localhost:8080/foodpairing/v1/drinkingredients/" + drinkIngredient.getId())
+                .build()
+                .encode()
+                .toUri();
+        restTemplate.delete(url);
     }
 
     public Dish saveDish(Dish dish) {

@@ -19,7 +19,7 @@ public class CompositionForm extends FormLayout {
     private TextField created = new TextField("Created");
 
     private Button changeDrink = new Button("Change drink");
-    private Button delete = new Button("Delete");
+    private Button delete = new Button("Delete drink");
     private Binder<Composition> binder = new Binder<>(Composition.class);
 
     public CompositionForm(CompositionView compositionView) {

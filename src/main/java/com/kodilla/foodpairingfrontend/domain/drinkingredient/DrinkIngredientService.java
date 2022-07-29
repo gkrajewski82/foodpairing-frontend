@@ -1,6 +1,7 @@
 package com.kodilla.foodpairingfrontend.domain.drinkingredient;
 
 import com.kodilla.foodpairingfrontend.client.BackendClient;
+import com.kodilla.foodpairingfrontend.domain.dish.Dish;
 import com.kodilla.foodpairingfrontend.domain.drink.Drink;
 import com.kodilla.foodpairingfrontend.domain.drink.DrinkService;
 import lombok.RequiredArgsConstructor;
@@ -34,5 +35,13 @@ public class DrinkIngredientService {
 
     public DrinkIngredient saveDrinkIngredient(DrinkIngredient drinkIngredient) {
         return backendClient.saveDrinkIngredient(drinkIngredient);
+    }
+
+    public void updateDrinkIngredient(DrinkIngredient drinkIngredient) {
+        backendClient.updateDrinkIngredient(drinkIngredient);
+    }
+
+    public void deleteDrinkIngredient(DrinkIngredient drinkIngredient) {
+        backendClient.deleteDrinkIngredient(drinkIngredient);
     }
 }

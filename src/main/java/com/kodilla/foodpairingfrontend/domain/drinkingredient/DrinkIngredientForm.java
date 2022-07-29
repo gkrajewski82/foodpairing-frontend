@@ -17,25 +17,52 @@ public class DrinkIngredientForm extends FormLayout {
     private TextField name = new TextField("Name");
     private TextField measure = new TextField("Measure");
 
-    private Button update = new Button("Update");
+    private Button save = new Button("Save");
     private Button delete = new Button("Delete");
+    private Button update = new Button("Update");
     private Binder<DrinkIngredient> binder = new Binder<>(DrinkIngredient.class);
 
     public DrinkIngredientForm(DrinkView drinkView) {
         this.drinkView = drinkView;
-        HorizontalLayout buttons = new HorizontalLayout(update, delete);
-        update.addThemeVariants(ButtonVariant.LUMO_PRIMARY);
+        HorizontalLayout buttons = new HorizontalLayout(save, delete, update);
+        save.addThemeVariants(ButtonVariant.LUMO_PRIMARY);
         delete.addThemeVariants(ButtonVariant.LUMO_PRIMARY);
+        update.addThemeVariants(ButtonVariant.LUMO_PRIMARY);
         add(drinkId, name, measure, buttons);
         binder.bindInstanceFields(this);
+        save.addClickListener(event -> save());
+        delete.addClickListener(event -> delete());
+        update.addClickListener(event -> update());
+    }
+
+    private void save() {
+        DrinkIngredient drinkIngredient = binder.getBean();
+        drinkIngredientService.saveDrinkIngredient(drinkIngredient);
+        drinkView.refreshDrinkIngredient();
+        setDrinkIngredient(null);
+    }
+
+    private void update() {
+        DrinkIngredient drinkIngredient = binder.getBean();
+        drinkIngredientService.updateDrinkIngredient(drinkIngredient);
+        drinkView.refreshDrinkIngredient();
+        setDrinkIngredient(null);
+    }
+
+    private void delete() {
+        DrinkIngredient drinkIngredient = binder.getBean();
+        drinkIngredientService.deleteDrinkIngredient(drinkIngredient);
+        drinkView.refreshDrinkIngredient();
+        setDrinkIngredient(null);
     }
 
     public void setDrinkIngredient(DrinkIngredient drinkIngredient) {
+        binder.setBean(drinkIngredient);
         if (drinkIngredient == null) {
             setVisible(false);
         } else {
             setVisible(true);
-            name.focus();
+            drinkId.focus();
         }
     }
 }
