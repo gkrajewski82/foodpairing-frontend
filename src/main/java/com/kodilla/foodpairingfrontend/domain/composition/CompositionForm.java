@@ -2,9 +2,7 @@ package com.kodilla.foodpairingfrontend.domain.composition;
 
 import com.kodilla.foodpairingfrontend.domain.drink.Drink;
 import com.kodilla.foodpairingfrontend.domain.drink.DrinkService;
-import com.kodilla.foodpairingfrontend.domain.drink.TheCocktailDbDrink;
 import com.kodilla.foodpairingfrontend.domain.drink.TheCocktailDbDrinkService;
-import com.kodilla.foodpairingfrontend.domain.drinkingredient.DrinkIngredient;
 import com.kodilla.foodpairingfrontend.domain.drinkingredient.DrinkIngredientService;
 import com.kodilla.foodpairingfrontend.mapper.DrinkIngredientMapper;
 import com.kodilla.foodpairingfrontend.mapper.DrinkMapper;
@@ -18,7 +16,6 @@ import com.vaadin.flow.data.binder.Binder;
 
 import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
 
 public class CompositionForm extends FormLayout {
 
@@ -44,6 +41,10 @@ public class CompositionForm extends FormLayout {
         HorizontalLayout buttons = new HorizontalLayout(changeDrink, delete);
         changeDrink.addThemeVariants(ButtonVariant.LUMO_PRIMARY);
         delete.addThemeVariants(ButtonVariant.LUMO_PRIMARY);
+        id.setReadOnly(true);
+        dishId.setReadOnly(true);
+        drinkId.setReadOnly(true);
+        created.setReadOnly(true);
         add(id, dishId, drinkId, created, buttons);
         binder.bindInstanceFields(this);
         delete.addClickListener(event -> delete());
@@ -65,14 +66,7 @@ public class CompositionForm extends FormLayout {
 
     public void changeDrink() {
         Composition composition = binder.getBean();
-        TheCocktailDbDrink theCocktailDbDrink = theCocktailDbDrinkService.getTheCocktailDbDrinks().get(0);
-        Drink drink = drinkMapper.mapToDrink(theCocktailDbDrink);
-        Drink savedDrink = drinkService.saveDrink(drink);
-        List<DrinkIngredient> drinkIngredientList = drinkIngredientMapper.mapToDrinkIngredientList(theCocktailDbDrink);
-        for (DrinkIngredient ingredient : drinkIngredientList) {
-            ingredient.setDrinkId(savedDrink.getId());
-            drinkIngredientService.saveDrinkIngredient(ingredient);
-        }
+        Drink savedDrink = drinkService.saveDrinkWithIngredients();
         Composition updatedComposition = new Composition(
                 composition.getId(),
                 composition.getDishId(),

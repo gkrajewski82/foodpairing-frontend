@@ -13,6 +13,7 @@ public class SpoonacularDishForm extends FormLayout {
 
     private DishView dishView;
     private SpoonacularDishService spoonacularDishService = SpoonacularDishService.getInstance();
+    private DishService dishService = DishService.getInstance();
     private DishMapper dishMapper = new DishMapper();
 
     private TextField name = new TextField("Name");
@@ -25,7 +26,6 @@ public class SpoonacularDishForm extends FormLayout {
 
     public SpoonacularDishForm(DishView dishView) {
         this.dishView = dishView;
-        HorizontalLayout buttons = new HorizontalLayout(addDish);
         addDish.addThemeVariants(ButtonVariant.LUMO_PRIMARY);
         add(name, readyInMinutes, servings, recipeUrl, addDish);
         binder.bindInstanceFields(this);
@@ -35,9 +35,8 @@ public class SpoonacularDishForm extends FormLayout {
     private void save() {
         SpoonacularDish spoonacularDish = binder.getBean();
         Dish dish = dishMapper.mapSpoonacularDishToDish(spoonacularDish);
-        spoonacularDishService.saveDish(dish);
+        dishService.saveDish(dish);
         dishView.refreshDish();
-        //setDish(null);
     }
 
     public void setSpoonacularDish(SpoonacularDish spoonacularDish) {

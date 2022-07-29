@@ -23,6 +23,10 @@ public class DishForm extends FormLayout {
     public DishForm(DishView dishView) {
         this.dishView = dishView;
         delete.addThemeVariants(ButtonVariant.LUMO_PRIMARY);
+        name.setReadOnly(true);
+        readyInMinutes.setReadOnly(true);
+        servings.setReadOnly(true);
+        recipeUrl.setReadOnly(true);
         add(name, readyInMinutes, servings, recipeUrl, delete);
         binder.bindInstanceFields(this);
         delete.addClickListener(event -> delete());

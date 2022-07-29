@@ -30,8 +30,4 @@ public class SpoonacularDishService {
             return Collections.EMPTY_LIST;
         }
     }
-
-    public Dish saveDish(Dish dish) {
-        return backendClient.saveDish(dish);
-    }
 }

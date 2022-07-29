@@ -33,4 +33,8 @@ public class DishService {
     public void delete(Dish dish) {
         backendClient.deleteDish(dish);
     }
+
+    public Dish saveDish(Dish dish) {
+        return backendClient.saveDish(dish);
+    }
 }
