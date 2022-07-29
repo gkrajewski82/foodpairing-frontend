@@ -16,7 +16,7 @@ public class SpoonacularDishForm extends FormLayout {
     private DishService dishService = DishService.getInstance();
     private DishMapper dishMapper = new DishMapper();
 
-    private TextField name = new TextField("Name");
+    private TextField name = new TextField("Dish name");
     private TextField readyInMinutes = new TextField("Ready in minutes");
     private TextField servings = new TextField("Servings");
     private TextField recipeUrl = new TextField("Recipe URL");

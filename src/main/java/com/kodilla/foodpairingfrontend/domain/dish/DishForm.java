@@ -12,7 +12,7 @@ public class DishForm extends FormLayout {
     private DishView dishView;
     private DishService dishService = DishService.getInstance();
 
-    private TextField name = new TextField("Name");
+    private TextField name = new TextField("Dish name");
     private TextField readyInMinutes = new TextField("Ready in minutes");
     private TextField servings = new TextField("Servings");
     private TextField recipeUrl = new TextField("Recipe URL");

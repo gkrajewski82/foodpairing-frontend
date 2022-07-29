@@ -27,7 +27,7 @@ public class CompositionForm extends FormLayout {
     private DrinkMapper drinkMapper = new DrinkMapper();
     private DrinkIngredientMapper drinkIngredientMapper = new DrinkIngredientMapper();
 
-    private TextField id = new TextField("Id");
+    private TextField id = new TextField("Composition id");
     private TextField dishId = new TextField("Dish id");
     private TextField drinkId = new TextField("Drink id");
     private TextField created = new TextField("Created");

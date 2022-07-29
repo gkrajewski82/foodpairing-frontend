@@ -19,7 +19,7 @@ public class CommentForm extends FormLayout {
 
     private TextField id = new TextField("Comment id");
     private TextField compositionId = new TextField("Composition id");
-    private TextField description = new TextField("Comment");
+    private TextField description = new TextField("Comment (description)");
 
     private Button save = new Button("Save");
     private Button update = new Button("Update");

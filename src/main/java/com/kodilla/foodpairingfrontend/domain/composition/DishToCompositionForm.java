@@ -27,7 +27,8 @@ public class DishToCompositionForm extends FormLayout {
     private DrinkMapper drinkMapper = new DrinkMapper();
     private DrinkIngredientMapper drinkIngredientMapper = new DrinkIngredientMapper();
 
-    private TextField name = new TextField("Name");
+    private TextField id = new TextField("Dish id");
+    private TextField name = new TextField("Dish name");
     private TextField readyInMinutes = new TextField("Ready in minutes");
     private TextField servings = new TextField("Servings");
     private TextField recipeUrl = new TextField("Recipe URL");
@@ -38,11 +39,12 @@ public class DishToCompositionForm extends FormLayout {
     public DishToCompositionForm(CompositionView compositionView) {
         this.compositionView = compositionView;
         createComposition.addThemeVariants(ButtonVariant.LUMO_PRIMARY);
+        id.setReadOnly(true);
         name.setReadOnly(true);
         readyInMinutes.setReadOnly(true);
         servings.setReadOnly(true);
         recipeUrl.setReadOnly(true);
-        add(name, readyInMinutes, servings, recipeUrl, createComposition);
+        add(id, name, readyInMinutes, servings, recipeUrl, createComposition);
         binder.bindInstanceFields(this);
         createComposition.addClickListener(event -> saveComposition());
     }
