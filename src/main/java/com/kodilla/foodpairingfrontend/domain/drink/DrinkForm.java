@@ -1,6 +1,5 @@
 package com.kodilla.foodpairingfrontend.domain.drink;
 
-import com.kodilla.foodpairingfrontend.domain.drinkingredient.DrinkIngredientService;
 import com.kodilla.foodpairingfrontend.view.DrinkView;
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.button.ButtonVariant;
@@ -12,7 +11,6 @@ public class DrinkForm extends FormLayout {
 
     private DrinkView drinkView;
     private DrinkService drinkService = DrinkService.getInstance();
-    private DrinkIngredientService drinkIngredientService = DrinkIngredientService.getInstance();
 
     private TextField id = new TextField("Drink id");
     private TextField name = new TextField("Drink name");

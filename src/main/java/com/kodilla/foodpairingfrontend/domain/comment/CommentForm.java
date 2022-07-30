@@ -1,6 +1,5 @@
 package com.kodilla.foodpairingfrontend.domain.comment;
 
-import com.kodilla.foodpairingfrontend.domain.drinkingredient.DrinkIngredient;
 import com.kodilla.foodpairingfrontend.view.CommentAndRatingView;
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.button.ButtonVariant;

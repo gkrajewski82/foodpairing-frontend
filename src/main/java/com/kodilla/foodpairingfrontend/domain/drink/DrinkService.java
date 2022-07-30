@@ -1,18 +1,15 @@
 package com.kodilla.foodpairingfrontend.domain.drink;
 
 import com.kodilla.foodpairingfrontend.client.BackendClient;
-import com.kodilla.foodpairingfrontend.domain.dish.Dish;
 import com.kodilla.foodpairingfrontend.domain.drinkingredient.DrinkIngredient;
 import com.kodilla.foodpairingfrontend.domain.drinkingredient.DrinkIngredientService;
 import com.kodilla.foodpairingfrontend.mapper.DrinkIngredientMapper;
 import com.kodilla.foodpairingfrontend.mapper.DrinkMapper;
-import lombok.RequiredArgsConstructor;
 import org.springframework.web.client.HttpClientErrorException;
 
 import java.util.Collections;
 import java.util.List;
 
-@RequiredArgsConstructor
 public class DrinkService {
 
     private static DrinkService drinkService;

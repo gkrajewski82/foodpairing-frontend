@@ -3,10 +3,6 @@ package com.kodilla.foodpairingfrontend.domain.composition;
 import com.kodilla.foodpairingfrontend.domain.dish.Dish;
 import com.kodilla.foodpairingfrontend.domain.drink.Drink;
 import com.kodilla.foodpairingfrontend.domain.drink.DrinkService;
-import com.kodilla.foodpairingfrontend.domain.drink.TheCocktailDbDrinkService;
-import com.kodilla.foodpairingfrontend.domain.drinkingredient.DrinkIngredientService;
-import com.kodilla.foodpairingfrontend.mapper.DrinkIngredientMapper;
-import com.kodilla.foodpairingfrontend.mapper.DrinkMapper;
 import com.kodilla.foodpairingfrontend.view.CompositionView;
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.button.ButtonVariant;
@@ -22,10 +18,6 @@ public class DishToCompositionForm extends FormLayout {
     private CompositionView compositionView;
     private CompositionService compositionService = CompositionService.getInstance();
     private DrinkService drinkService = DrinkService.getInstance();
-    private DrinkIngredientService drinkIngredientService = DrinkIngredientService.getInstance();
-    private TheCocktailDbDrinkService theCocktailDbDrinkService = TheCocktailDbDrinkService.getInstance();
-    private DrinkMapper drinkMapper = new DrinkMapper();
-    private DrinkIngredientMapper drinkIngredientMapper = new DrinkIngredientMapper();
 
     private TextField id = new TextField("Dish id");
     private TextField name = new TextField("Dish name");

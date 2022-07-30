@@ -5,14 +5,12 @@ import com.kodilla.foodpairingfrontend.view.DishView;
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.button.ButtonVariant;
 import com.vaadin.flow.component.formlayout.FormLayout;
-import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.component.textfield.TextField;
 import com.vaadin.flow.data.binder.Binder;
 
 public class SpoonacularDishForm extends FormLayout {
 
     private DishView dishView;
-    private SpoonacularDishService spoonacularDishService = SpoonacularDishService.getInstance();
     private DishService dishService = DishService.getInstance();
     private DishMapper dishMapper = new DishMapper();
 

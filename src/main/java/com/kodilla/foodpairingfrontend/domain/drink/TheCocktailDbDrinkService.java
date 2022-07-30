@@ -1,15 +1,12 @@
 package com.kodilla.foodpairingfrontend.domain.drink;
 
 import com.kodilla.foodpairingfrontend.client.BackendClient;
-import lombok.RequiredArgsConstructor;
 import org.springframework.web.client.HttpClientErrorException;
 
 import java.util.Collections;
 import java.util.List;
 
-@RequiredArgsConstructor
 public class TheCocktailDbDrinkService {
-
 
     private static TheCocktailDbDrinkService theCocktailDbDrinkService;
     private final BackendClient backendClient = new BackendClient();

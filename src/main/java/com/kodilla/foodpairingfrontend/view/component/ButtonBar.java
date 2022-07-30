@@ -27,5 +27,4 @@ public class ButtonBar {
         commentAndRating.addClickListener(event -> commentAndRating.getUI().ifPresent(ui -> ui.navigate("foodpairing/commentandrating")));
         return buttons;
     }
-
 }

@@ -17,7 +17,6 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 
-
 public class BackendClient {
 
     private final RestTemplate restTemplate = new RestTemplate();
@@ -157,18 +156,6 @@ public class BackendClient {
         restTemplate.delete(url);
     }
 
-    public List<Comment> getCommentList() {
-        URI url = UriComponentsBuilder
-                .fromHttpUrl("http://localhost:8080/foodpairing/v1/comments")
-                .build()
-                .encode()
-                .toUri();
-        Comment[] response = restTemplate.getForObject(url, Comment[].class);
-        return Optional.ofNullable(response)
-                .map(Arrays::asList)
-                .orElse(Collections.emptyList());
-    }
-
     public List<Comment> getCommentsForCompositionList(String compositionId) {
         URI url = UriComponentsBuilder
                 .fromHttpUrl("http://localhost:8080/foodpairing/v1/comments/" + compositionId)
@@ -207,18 +194,6 @@ public class BackendClient {
                 .encode()
                 .toUri();
         restTemplate.delete(url);
-    }
-
-    public List<Reaction> getReactionList() {
-        URI url = UriComponentsBuilder
-                .fromHttpUrl("http://localhost:8080/foodpairing/v1/reactions")
-                .build()
-                .encode()
-                .toUri();
-        Reaction[] response = restTemplate.getForObject(url, Reaction[].class);
-        return Optional.ofNullable(response)
-                .map(Arrays::asList)
-                .orElse(Collections.emptyList());
     }
 
     public List<Reaction> getReactionsForCommentList(String commentId) {

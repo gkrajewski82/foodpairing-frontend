@@ -49,7 +49,6 @@ public class CommentAndRatingView extends VerticalLayout {
         refreshComposition();
         gridComposition.asSingleSelect().addValueChangeListener(event -> compositionToCommentForm.setComposition(gridComposition.asSingleSelect().getValue()));
 
-
         createFindByCompositionField();
         addNewComment.addClickListener(e -> {
             gridComment.asSingleSelect().clear();
@@ -67,7 +66,6 @@ public class CommentAndRatingView extends VerticalLayout {
         setSizeFull();
         refreshComment();
         gridComment.asSingleSelect().addValueChangeListener(event -> commentForm.setComment(gridComment.asSingleSelect().getValue()));
-
 
         createFindByCommentField();
         addNewReaction.addClickListener(e -> {
