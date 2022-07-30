@@ -11,6 +11,6 @@ public class MainView extends VerticalLayout {
 
     public MainView() {
         add(buttonBar.createButtonBar());
-        add("Choose your favourite dish, get a random drink to it :) ...... and check how it tastes together......, then comment compositions which were created ");
+        add("Choose your favourite dish, get a random drink to it :) ...... and check how it tastes together......, then comment compositions which were created. ");
     }
 }

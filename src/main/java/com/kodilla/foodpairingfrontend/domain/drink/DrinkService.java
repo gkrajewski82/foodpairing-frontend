@@ -1,6 +1,6 @@
 package com.kodilla.foodpairingfrontend.domain.drink;
 
-import com.kodilla.foodpairingfrontend.client.BackendClient;
+import com.kodilla.foodpairingfrontend.client.foodpairing.DrinkBackend;
 import com.kodilla.foodpairingfrontend.domain.drinkingredient.DrinkIngredient;
 import com.kodilla.foodpairingfrontend.domain.drinkingredient.DrinkIngredientService;
 import com.kodilla.foodpairingfrontend.mapper.DrinkIngredientMapper;
@@ -13,7 +13,7 @@ import java.util.List;
 public class DrinkService {
 
     private static DrinkService drinkService;
-    private final BackendClient backendClient = new BackendClient();
+    private final DrinkBackend drinkBackend = new DrinkBackend();
     private List<Drink> drinkList;
 
     private DrinkIngredientService drinkIngredientService = DrinkIngredientService.getInstance();
@@ -30,7 +30,7 @@ public class DrinkService {
 
     public List<Drink> getDrinks() {
         try {
-            drinkList = backendClient.getDrinkList();
+            drinkList = drinkBackend.getDrinkList();
             return drinkList;
         } catch (HttpClientErrorException e) {
             return Collections.EMPTY_LIST;
@@ -38,7 +38,7 @@ public class DrinkService {
     }
 
     public Drink saveDrink(Drink drink) {
-        return backendClient.saveDrink(drink);
+        return drinkBackend.saveDrink(drink);
     }
 
     public Drink saveDrinkWithIngredients() {
@@ -54,10 +54,10 @@ public class DrinkService {
     }
 
     public void updateDrink(Drink drink) {
-        backendClient.updateDrink(drink);
+        drinkBackend.updateDrink(drink);
     }
 
-    public void delete(Long drinkId) {
-        backendClient.deleteDrink(drinkId);
+    public void deleteDrink(Long drinkId) {
+        drinkBackend.deleteDrink(drinkId);
     }
 }

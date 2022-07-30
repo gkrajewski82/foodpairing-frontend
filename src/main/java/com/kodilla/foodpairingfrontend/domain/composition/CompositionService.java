@@ -1,6 +1,6 @@
 package com.kodilla.foodpairingfrontend.domain.composition;
 
-import com.kodilla.foodpairingfrontend.client.BackendClient;
+import com.kodilla.foodpairingfrontend.client.foodpairing.CompositionBackend;
 import org.springframework.web.client.HttpClientErrorException;
 
 import java.util.Collections;
@@ -9,7 +9,7 @@ import java.util.List;
 public class CompositionService {
 
     private static CompositionService compositionService;
-    private final BackendClient backendClient = new BackendClient();
+    private final CompositionBackend compositionBackend = new CompositionBackend();
     private List<Composition> compositionList;
 
     public static CompositionService getInstance() {
@@ -21,22 +21,22 @@ public class CompositionService {
 
     public List<Composition> getCompositions() {
         try {
-            compositionList = backendClient.getCompositionList();
+            compositionList = compositionBackend.getCompositionList();
             return compositionList;
         } catch (HttpClientErrorException e) {
             return Collections.EMPTY_LIST;
         }
     }
 
-    public Composition save(Composition composition) {
-        return backendClient.createComposition(composition);
+    public Composition saveComposition(Composition composition) {
+        return compositionBackend.createComposition(composition);
     }
 
-    public void delete(Composition composition) {
-        backendClient.deleteComposition(composition);
+    public void updateComposition(Composition composition) {
+        compositionBackend.updateComposition(composition);
     }
 
-    public void update(Composition composition) {
-        backendClient.updateComposition(composition);
+    public void deleteComposition(Composition composition) {
+        compositionBackend.deleteComposition(composition);
     }
 }

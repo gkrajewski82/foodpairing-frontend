@@ -51,7 +51,7 @@ public class DishToCompositionForm extends FormLayout {
                 new Date(),
                 new ArrayList<>()
         );
-        compositionService.save(composition);
+        compositionService.saveComposition(composition);
         compositionView.refreshComposition();
     }
 

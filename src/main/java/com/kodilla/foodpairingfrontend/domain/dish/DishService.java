@@ -1,6 +1,6 @@
 package com.kodilla.foodpairingfrontend.domain.dish;
 
-import com.kodilla.foodpairingfrontend.client.BackendClient;
+import com.kodilla.foodpairingfrontend.client.foodpairing.DishBackend;
 import org.springframework.web.client.HttpClientErrorException;
 
 import java.util.Collections;
@@ -9,7 +9,7 @@ import java.util.List;
 public class DishService {
 
     private static DishService dishService;
-    private final BackendClient backendClient = new BackendClient();
+    private final DishBackend backendClient = new DishBackend();
     private List<Dish> dishList;
 
     public static DishService getInstance() {
@@ -28,11 +28,11 @@ public class DishService {
         }
     }
 
-    public void delete(Dish dish) {
-        backendClient.deleteDish(dish);
-    }
-
     public Dish saveDish(Dish dish) {
         return backendClient.saveDish(dish);
+    }
+
+    public void deleteDish(Dish dish) {
+        backendClient.deleteDish(dish);
     }
 }

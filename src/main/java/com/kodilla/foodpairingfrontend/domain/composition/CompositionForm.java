@@ -43,19 +43,6 @@ public class CompositionForm extends FormLayout {
         changeDrink.addClickListener(event -> changeDrink());
     }
 
-    private void delete() {
-        Composition composition = binder.getBean();
-        compositionService.delete(composition);
-        compositionView.refreshComposition();
-        setComposition(null);
-    }
-
-    public void setComposition(Composition composition) {
-        binder.setBean(composition);
-        setVisible(true);
-        created.focus();
-    }
-
     public void changeDrink() {
         Composition composition = binder.getBean();
         Drink savedDrink = drinkService.saveDrinkWithIngredients();
@@ -66,8 +53,21 @@ public class CompositionForm extends FormLayout {
                 new Date(),
                 new ArrayList<>()
         );
-        compositionService.update(updatedComposition);
-        drinkService.delete(composition.getDrinkId());
+        compositionService.updateComposition(updatedComposition);
+        drinkService.deleteDrink(composition.getDrinkId());
         compositionView.refreshComposition();
+    }
+
+    private void delete() {
+        Composition composition = binder.getBean();
+        compositionService.deleteComposition(composition);
+        compositionView.refreshComposition();
+        setComposition(null);
+    }
+
+    public void setComposition(Composition composition) {
+        binder.setBean(composition);
+        setVisible(true);
+        created.focus();
     }
 }

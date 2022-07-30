@@ -1,6 +1,6 @@
 package com.kodilla.foodpairingfrontend.domain.comment;
 
-import com.kodilla.foodpairingfrontend.client.BackendClient;
+import com.kodilla.foodpairingfrontend.client.foodpairing.CommentBackend;
 import org.springframework.web.client.HttpClientErrorException;
 
 import java.util.Collections;
@@ -9,7 +9,7 @@ import java.util.List;
 public class CommentService {
 
     private static CommentService commentService;
-    private final BackendClient backendClient = new BackendClient();
+    private final CommentBackend commentBackend = new CommentBackend();
 
     public static CommentService getInstance() {
         if (commentService == null) {
@@ -20,21 +20,21 @@ public class CommentService {
 
     public List<Comment> getCommentsForComposition(String commentId) {
         try {
-            return backendClient.getCommentsForCompositionList(commentId);
+            return commentBackend.getCommentsForCompositionList(commentId);
         } catch (HttpClientErrorException e) {
             return Collections.EMPTY_LIST;
         }
     }
 
     public Comment saveComment(Comment comment) {
-        return backendClient.saveComment(comment);
+        return commentBackend.saveComment(comment);
     }
 
     public void updateComment(Comment comment) {
-        backendClient.updateComment(comment);
+        commentBackend.updateComment(comment);
     }
 
     public void deleteComment(Comment comment) {
-        backendClient.deleteComment(comment);
+        commentBackend.deleteComment(comment);
     }
 }

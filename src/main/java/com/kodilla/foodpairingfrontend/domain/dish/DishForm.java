@@ -34,7 +34,7 @@ public class DishForm extends FormLayout {
 
     private void delete() {
         Dish dish = binder.getBean();
-        dishService.delete(dish);
+        dishService.deleteDish(dish);
         dishView.refreshDish();
         setDish(null);
     }

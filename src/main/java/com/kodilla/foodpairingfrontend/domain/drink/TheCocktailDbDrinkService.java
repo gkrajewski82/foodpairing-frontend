@@ -1,6 +1,6 @@
 package com.kodilla.foodpairingfrontend.domain.drink;
 
-import com.kodilla.foodpairingfrontend.client.BackendClient;
+import com.kodilla.foodpairingfrontend.client.foodpairing.DrinkBackend;
 import org.springframework.web.client.HttpClientErrorException;
 
 import java.util.Collections;
@@ -9,7 +9,7 @@ import java.util.List;
 public class TheCocktailDbDrinkService {
 
     private static TheCocktailDbDrinkService theCocktailDbDrinkService;
-    private final BackendClient backendClient = new BackendClient();
+    private final DrinkBackend drinkBackend = new DrinkBackend();
     private List<TheCocktailDbDrink> theCocktailDbDrinkList;
 
     public static TheCocktailDbDrinkService getInstance() {
@@ -21,7 +21,7 @@ public class TheCocktailDbDrinkService {
 
     public List<TheCocktailDbDrink> getTheCocktailDbDrinks() {
         try {
-            theCocktailDbDrinkList = backendClient.getDrinkListFromTheCocktailDb();
+            theCocktailDbDrinkList = drinkBackend.getDrinkListFromTheCocktailDb();
             return theCocktailDbDrinkList;
         } catch (HttpClientErrorException e) {
             return Collections.EMPTY_LIST;
